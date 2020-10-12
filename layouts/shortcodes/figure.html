@@ -1,0 +1,6 @@
+<figure class="figure" >
+  <div class="row" >
+    {{ .Inner }}
+  </div>
+  {{ with .Get "figcaption" }}<figcaption class="figure-caption text-left" >{{ . }}</figcaption>{{ end }}
+</figure>

@@ -1,0 +1,20 @@
+<footer>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="footer-menu">
+        <ul>
+          {{ range .Site.Menus.footer }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+        {{ if .Date.IsZero }}
+        <p>Copyright &copy; {{ .Site.Copyright }} Brian Kloppenborg. All Rights Reserved.</p>
+        {{ else }}
+        <p>Copyright &copy; {{ .Date.Format "2006" }} Brian Kloppenborg. All Rights Reserved.</p>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>
+</footer>

@@ -1,0 +1,13 @@
+{{ define "main" }}
+
+{{ .Content }}
+
+<h2>Recent Posts</h2>
+
+<ul>
+  {{ range .Site.Pages }}
+    <li><a href="{{ .Page.URL }}">{{ .Page.Title }}</a></li>
+  {{ end }}
+</ul>
+
+{{ end }}

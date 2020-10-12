@@ -1,0 +1,25 @@
+{{/* set some variables */}}
+{{ $src := .Page.Resources.GetMatch (.Get "src") }}
+{{ $tinyw := default "500x" }}
+
+{{/* resize the src image to the specified size */}}
+{{ .Scratch.Set "tiny" ($src.Resize $tinyw) }}
+
+{{/* add the processed images to the scratch */}}
+{{ $tiny := .Scratch.Get "tiny" }}
+
+
+<div>
+  <a href="{{ .Get "src" }}">
+    <img class="figure-img img-fluid rounded"
+      {{ with .Get "sizes" }}sizes='{{.}}'{{ else }}sizes="(min-width: 35em) 1200px, 100vw"{{ end }}
+         srcset='
+          {{ if ge $src.Width "500" }}{{ with $tiny.RelPermalink }}{{.}} 500w{{ end }}{{ end }}'
+      {{ if .Get (print $tiny) }}
+        src="{{ $tiny.RelPermalink }}" 
+      {{ else }}
+        src="{{ $src.RelPermalink }}" 
+      {{ end }}
+      {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}>   
+  </a>
+</div>
